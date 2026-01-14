@@ -1,21 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-
-// import './App.css'
-import "primeicons/primeicons.css";
-
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Skeleton } from "primereact/skeleton";
 
-
-
 import { OverlayPanel } from "primereact/overlaypanel";
 import { Button } from "primereact/button";
-import { InputNumber } from "primereact/inputnumber";
+import {InputNumber} from "primereact/inputnumber";
 import type { Artwork } from "../services/data/ArtworkTable";
 import { TableData } from "../services/api/TableData";
 
-export  function ArtTable() {
+export function ArtTable() {
   const [artwork, setArtwork] = useState<Artwork[]>([]);
   const [totalWorks, setTotalWorks] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
@@ -29,12 +23,6 @@ export  function ArtTable() {
     const res = await TableData.getArtworks(page);
     setArtwork(res.data);
     setTotalWorks(res.pagination.total);
-
-    // const pageSelection = res.data.filter((row) =>
-    //   selectedIds.has(row.id)
-    // );
-    // setSelectedRows(pageSelection);
-
     setLoading(false);
   };
 
@@ -49,9 +37,8 @@ export  function ArtTable() {
 
   const skeleton = () => <Skeleton width="100%" height="1.5rem" />;
 
-  //let start with overlay panel
-
-  //1 .  create a reference for overlay panel
+  // Overlay Panel for custom selection
+  //
   const overlayRef = useRef<OverlayPanel>(null);
   const [value, setValue] = useState(12);
 
@@ -62,16 +49,13 @@ export  function ArtTable() {
 
     setSelectedIds((prev) => {
       const next = new Set(prev);
-      // clear current page contribution
       artwork.forEach((row) => next.delete(row.id));
-      // add newly selected rows
       selected.forEach((row) => next.add(row.id));
       return next;
     });
 
     overlayRef.current?.hide();
   };
-
   //end of overlay panel
 
   return (
@@ -94,11 +78,12 @@ export  function ArtTable() {
             <InputNumber
               value={value}
               onValueChange={(e) => setValue(e.value ?? 0)}
-              min={0}
-              style={{ width: "100%" }}
-              size={5}
               showButtons
-              inputClassName="p-inputtext-sm"
+              min={0}
+              className="custom-inputnumber"
+              inputClassName="custom-input"
+              incrementButtonClassName="custom-btn"
+              decrementButtonClassName="custom-btn"
             />
 
             <Button
@@ -123,7 +108,6 @@ export  function ArtTable() {
           value={artwork}
           paginator
           rows={12}
-          rowsPerPageOptions={[10, 20, 30]}
           lazy
           first={page * 12}
           totalRecords={totalWorks}
@@ -144,8 +128,8 @@ export  function ArtTable() {
               : e.value
               ? [e.value]
               : [];
-            setSelectedRows(selected); // update the selectedRows state
 
+            setSelectedRows(selected); // update the selectedRows state
             // Now we update the selectedIds set accordingly
             setSelectedIds((prev) => {
               const next = new Set(prev);
@@ -237,5 +221,3 @@ export  function ArtTable() {
     </>
   );
 }
-
-

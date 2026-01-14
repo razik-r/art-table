@@ -69,3 +69,28 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+/* Container */
+.custom-inputnumber {
+  width: 100%;
+}
+
+/* Input */
+.custom-input {
+  height: 45px;
+  font-size: 0.85rem;
+ padding: 0.25rem;
+}
+
+/* Buttons */
+.custom-btn {
+  width: 24px !important;
+  height: 22px !important;
+  padding: 0 !important;
+}
+
+/* Icons inside buttons */
+.custom-btn .p-inputnumber-button-icon {
+  font-size: 0.7rem;
+}
