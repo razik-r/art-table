@@ -6,7 +6,7 @@ import { Skeleton } from "primereact/skeleton";
 import { OverlayPanel } from "primereact/overlaypanel";
 import { Button } from "primereact/button";
 import {InputNumber} from "primereact/inputnumber";
-import type { Artwork } from "../services/data/ArtworkTable";
+import type { Artwork } from "../services/data/Artwork";
 import { TableData } from "../services/api/TableData";
 
 export function ArtTable() {
