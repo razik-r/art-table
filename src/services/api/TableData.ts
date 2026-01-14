@@ -1,4 +1,4 @@
-import type { ArtworkTable } from "../data/Artwork";
+import type { ArtworkTable } from "../data/ArtworkTable";
 
 const API_URL = "https://api.artic.edu/api/v1/artworks";
 export const TableData = 

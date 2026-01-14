@@ -8,12 +8,12 @@ export interface Artwork {
     date_end: number | null;
   }
 
-  // export interface ArtworkTable {
-  //   data: Artwork[];
-  //   pagination: {
-  //     total: number;
-  //   };
-  // }
+  export interface ArtworkTable {
+    data: Artwork[];
+    pagination: {
+      total: number;
+    };
+  }
 
 
   
